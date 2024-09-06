@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <script type="text/javascript" src="js/rem.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>智慧PCB生产数据中心-首页</title>
+</head>
+
+<body style="visibility: hidden;">
+    <div class="container-flex" tabindex="0" hidefocus="true">
+        <div class="box-left">
+            <div class="left-top">
+                <div class="current-num">
+                    <div>当前生产量</div>
+                    <p id="allcount">8888</p>
+                </div>
+            </div>
+            <div class="left-center">
+                <div class="title-box">
+                    <h6>实时生产情况</h6>
+                </div>
+                <p class="unit">单位：检测个数</p>
+                <div class="chart-box pie-chart">
+                    <div id="pie"></div>
+                    <div>
+                        <div class="pie-data">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-bottom" class="select">
+                <div class="title-box">
+                    <h6 id="barTitle">瑕疵品分析</h6>
+                    
+                </div>
+                <p class="unit">单位：瑕疵个数</p>
+                <div class="chart-box">
+                    <div id="chart3" style="width:100%;height:100%;"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="box-center">
+            <div class="center-top">
+                <h1>智慧PCB生产数据中心</h1>
+            </div>
+            <div class="center-center">
+                <div class="weather-box">
+                    <div class="data">
+                        <p class="time" id="time">00:00:00</p>
+                        <p id="date"></p>
+                    </div>
+                    <div class="weather">
+                        <img id="weatherImg" src="images/weather/weather_img01.png" alt="更多资源：https://gitee.com/iGaoWei/big-data-view">
+                        <div id="weather">
+                            <p class="active">多云</p>
+                            <p>27-37℃</p>
+                            <p>杭州市钱塘区</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center-bottom">
+                <div class="map">
+                    <div class="map1"><img src="images/lbx.png"></div>
+                    <div class="map2"><img src="images/jt.png"></div>
+                    <div class="map3"><img src="images/map.png"></div>
+                    <!-- <div class="map4" id="map_1"></div> -->
+                  </div>
+            </div>
+
+        </div>
+        <div class="box-right">
+            <div class="right-top">
+                <div class="title-box">
+                    <h6>检测记录</h6>
+                </div>
+                <div class="albumGrid">
+                    <!-- <div class="gridItem">
+                        <img src="http://pcb-file.rubbishman.xyz/image/1725593633.jpg" alt="">
+                        <span>2024年9月3日 15:02:01</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="pop-up">
+            <span class="close-pop"></span>
+            <h2 class="title">检测详情</h2>
+            <div class="detectContainer">
+                <!-- 隐藏的图像用于加载 -->
+                <img id="sourceImg" style="display:none;" alt="">
+                <!-- Canvas用于绘制图像和结果 -->
+                <canvas class="image" id="imageCanvas"></canvas>
+                <div class="resultContainer">
+                    <span class="label">检测结果</span>
+                    <p class="time" id="detail_time"></p>
+                    <textarea id="detectResult" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<!-- <script type="text/javascript" src="js/layer/layer.min.js"></script>
+<script type="text/javascript" src="js/layer/laydate/laydate.js"></script> -->
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/pop_base.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript">
+    $('document').ready(function () {
+        $("body").css('visibility', 'visible');
+        var localData = [$('#teacher').val(), $('#start').val() + '/' + $('#end').val(), $('#leader').val()]
+        localStorage.setItem("data", localData);
+        $('#conBtn').on('click', function () {
+            localData = [$('#teacher').val(), $('#start').val() + '/' + $('#end').val(), $('#leader').val()]
+            if (typeof (Storage) !== "undefined") {
+                localStorage.setItem("data", localData);
+                var arr = localStorage.getItem("data").split(',');
+                $('#name_a').html(arr[0]);
+                $('#date_a').html(arr[1]);
+                $('#lea_a').html(arr[2]);
+            }
+        })
+        $('#fangda').on('click', function () {
+            if ($(this).siblings('ul').is(":hidden")) {
+                $(this).addClass('active').siblings('ul').show();
+            } else {
+                $(this).removeClass('active').siblings('ul').hide();
+            }
+        })
+    })
+</script>
+
+</html>
